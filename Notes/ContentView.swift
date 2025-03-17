@@ -189,14 +189,13 @@
 
 import SwiftUI
 
-// Model to represent a Note
 struct Note: Identifiable {
     let id = UUID()
     var title: String
     var content: String
 }
 
-// ViewModel to manage notes
+
 class NotesViewModel: ObservableObject {
     @Published var notes: [Note] = []
     
@@ -213,7 +212,7 @@ class NotesViewModel: ObservableObject {
     }
     
     func deleteNotes(at offsets: IndexSet) {
-        notes.remove(atOffsets: offsets) // Removes notes at the specified index set
+        notes.remove(atOffsets: offsets)
     }
     
     func moveNotes(from source: IndexSet, to destination: Int) {
@@ -227,7 +226,7 @@ struct ContentView: View {
     }
 }
 
-// Custom Edit Button
+
 struct CustomEditButton: View {
     @Binding var isEditing: Bool
 
@@ -246,7 +245,6 @@ struct CustomEditButton: View {
         }
     }
 }
-
 // Home Page: List of saved notes
 struct HomePage: View {
     @ObservedObject var viewModel: NotesViewModel
@@ -266,31 +264,31 @@ struct HomePage: View {
                         }
                     }
                 }
-                .onDelete(perform: deleteNote) // Handling delete here
-                .onMove(perform: viewModel.moveNotes) // Enable reordering
+                .onDelete(perform: deleteNote)
+                .onMove(perform: viewModel.moveNotes)
             }
             .navigationTitle("Notes")
             .navigationBarItems(
-                leading: CustomEditButton(isEditing: $isEditing), // Custom edit button
+                leading: CustomEditButton(isEditing: $isEditing),
                 trailing: NavigationLink(destination: CreateNotePage(viewModel: viewModel)) {
                     Image(systemName: "plus")
                 }
             )
             .toolbar {
-                // Enable reordering items when in edit mode
+               
                 EditButton()
             }
         }
         .navigationViewStyle(StackNavigationViewStyle())
     }
 
-    // Delete note using the view model
+   
     func deleteNote(at offsets: IndexSet) {
         viewModel.deleteNotes(at: offsets)
     }
 }
 
-// Create Note Page: Form for creating and saving notes
+
 struct CreateNotePage: View {
     @ObservedObject var viewModel: NotesViewModel
     @State private var title = ""
@@ -308,7 +306,7 @@ struct CreateNotePage: View {
             }
             Button(action: {
                 withAnimation(.easeInOut(duration: 0.1)) {
-                    // Toggle button color change on tap
+                   
                     isTapped.toggle()
                 }
                 viewModel.addNote(title: title, content: content)
@@ -319,7 +317,7 @@ struct CreateNotePage: View {
                     .foregroundColor(.white)
                     .padding()
                     .frame(maxWidth: .infinity)
-                    .background(isTapped ? Color.blue : Color.primary) // Change color on tap
+                    .background(isTapped ? Color.blue : Color.primary)
                     .cornerRadius(10)
                     .shadow(radius: 5)
             }
@@ -328,13 +326,12 @@ struct CreateNotePage: View {
     }
 }
 
-// Edit Note Page: Page to edit existing notes
 struct EditNotePage: View {
     var note: Note
     @ObservedObject var viewModel: NotesViewModel
     @State private var title = ""
     @State private var content = ""
-    @State private var isTapped = false // Declare isTapped here as well
+    @State private var isTapped = false
     @Environment(\.presentationMode) var presentationMode
 
     var body: some View {
@@ -353,7 +350,7 @@ struct EditNotePage: View {
             }
             Button(action: {
                 withAnimation(.easeInOut(duration: 0.1)) {
-                    // Toggle button color change on tap
+                  
                     isTapped.toggle()
                 }
                 viewModel.updateNote(id: note.id, title: title, content: content)
@@ -373,7 +370,6 @@ struct EditNotePage: View {
     }
 }
 
-// Preview for testing
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
