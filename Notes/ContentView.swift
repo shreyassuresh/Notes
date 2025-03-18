@@ -101,18 +101,18 @@ struct EditNotePage: View {
             Section(header: Text("Title")) {
                 TextField("Enter title", text: $title)
                     .onAppear {
-                        title = note.title ?? "" // Default title if none exists
+                        title = note.title ?? ""
                     }
             }
             Section(header: Text("Content")) {
                 TextEditor(text: $content)
                     .onAppear {
-                        content = note.content ?? "" // Default content if none exists
+                        content = note.content ?? ""
                     }
             }
             Button(action: {
                 viewModel.updateNote(id: note.objectID, title: title, content: content)
-                presentationMode.wrappedValue.dismiss() // Dismiss the view
+                presentationMode.wrappedValue.dismiss()
             }) {
                 Text("Update Note")
                     .font(.headline)
@@ -124,8 +124,8 @@ struct EditNotePage: View {
                     .shadow(radius: 5)
             }
             Button(action: {
-                viewModel.deleteNote(id: note.objectID) // Correct method call
-                presentationMode.wrappedValue.dismiss() // Dismiss the view
+                viewModel.deleteNote(id: note.objectID)
+                presentationMode.wrappedValue.dismiss()
             }) {
                 Text("Delete Note")
                     .font(.headline)
@@ -140,7 +140,6 @@ struct EditNotePage: View {
         .navigationTitle("Edit Note")
     }
 }
-
 
 // The main ContentView, initializing the HomePage
 struct ContentView: View {

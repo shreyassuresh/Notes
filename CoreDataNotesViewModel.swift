@@ -47,6 +47,7 @@ class CoreDataNotesViewModel: ObservableObject {
         }
         saveContext()
     }
+    
 
     private func saveContext() {
         do {
