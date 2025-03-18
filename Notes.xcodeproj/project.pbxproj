@@ -14,7 +14,10 @@
 		3EDA5BD22D88299F00083DB6 /* NotesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDA5BD12D88299F00083DB6 /* NotesTests.swift */; };
 		3EDA5BDC2D88299F00083DB6 /* NotesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDA5BDB2D88299F00083DB6 /* NotesUITests.swift */; };
 		3EDA5BDE2D88299F00083DB6 /* NotesUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDA5BDD2D88299F00083DB6 /* NotesUITestsLaunchTests.swift */; };
-		3EDA5BEB2D883D2600083DB6 /* EditButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDA5BEA2D883D2600083DB6 /* EditButton.swift */; };
+		3EDA5BEB2D883D2600083DB6 /* CoreDataNotesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDA5BEA2D883D2600083DB6 /* CoreDataNotesViewModel.swift */; };
+		3EE853B72D896732007088B0 /* Notes.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3EE853B52D896732007088B0 /* Notes.xcdatamodeld */; };
+		3EE853B92D8968E1007088B0 /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EE853B82D8968E1007088B0 /* PersistenceController.swift */; };
+		3EE853BD2D897875007088B0 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EE853BC2D897875007088B0 /* CoreDataStack.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,7 +48,10 @@
 		3EDA5BD72D88299F00083DB6 /* NotesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NotesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3EDA5BDB2D88299F00083DB6 /* NotesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesUITests.swift; sourceTree = "<group>"; };
 		3EDA5BDD2D88299F00083DB6 /* NotesUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		3EDA5BEA2D883D2600083DB6 /* EditButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditButton.swift; sourceTree = "<group>"; };
+		3EDA5BEA2D883D2600083DB6 /* CoreDataNotesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataNotesViewModel.swift; sourceTree = "<group>"; };
+		3EE853B62D896732007088B0 /* Notes.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Notes.xcdatamodel; sourceTree = "<group>"; };
+		3EE853B82D8968E1007088B0 /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
+		3EE853BC2D897875007088B0 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,7 +82,9 @@
 		3EDA5BB42D88299C00083DB6 = {
 			isa = PBXGroup;
 			children = (
-				3EDA5BEA2D883D2600083DB6 /* EditButton.swift */,
+				3EE853B82D8968E1007088B0 /* PersistenceController.swift */,
+				3EE853B52D896732007088B0 /* Notes.xcdatamodeld */,
+				3EDA5BEA2D883D2600083DB6 /* CoreDataNotesViewModel.swift */,
 				3EDA5BBF2D88299D00083DB6 /* Notes */,
 				3EDA5BD02D88299F00083DB6 /* NotesTests */,
 				3EDA5BDA2D88299F00083DB6 /* NotesUITests */,
@@ -101,6 +109,7 @@
 				3EDA5BC22D88299D00083DB6 /* ContentView.swift */,
 				3EDA5BC42D88299E00083DB6 /* Assets.xcassets */,
 				3EDA5BC62D88299E00083DB6 /* Preview Content */,
+				3EE853BC2D897875007088B0 /* CoreDataStack.swift */,
 			);
 			path = Notes;
 			sourceTree = "<group>";
@@ -261,8 +270,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				3EDA5BC32D88299D00083DB6 /* ContentView.swift in Sources */,
-				3EDA5BEB2D883D2600083DB6 /* EditButton.swift in Sources */,
+				3EDA5BEB2D883D2600083DB6 /* CoreDataNotesViewModel.swift in Sources */,
 				3EDA5BC12D88299D00083DB6 /* NotesApp.swift in Sources */,
+				3EE853BD2D897875007088B0 /* CoreDataStack.swift in Sources */,
+				3EE853B72D896732007088B0 /* Notes.xcdatamodeld in Sources */,
+				3EE853B92D8968E1007088B0 /* PersistenceController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -424,6 +436,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				CREATE_INFOPLIST_SECTION_IN_BINARY = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Notes/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
@@ -438,7 +451,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.shreyassuresh.Notes;
+				PRODUCT_BUNDLE_IDENTIFIER = com.shreyas.Notes;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -452,6 +465,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				CREATE_INFOPLIST_SECTION_IN_BINARY = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Notes/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
@@ -466,7 +480,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.shreyassuresh.Notes;
+				PRODUCT_BUNDLE_IDENTIFIER = com.shreyas.Notes;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -586,6 +600,20 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		3EE853B52D896732007088B0 /* Notes.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				3EE853B62D896732007088B0 /* Notes.xcdatamodel */,
+			);
+			currentVersion = 3EE853B62D896732007088B0 /* Notes.xcdatamodel */;
+			name = Notes.xcdatamodeld;
+			path = "/Users/teachers/Desktop/IOS Community/Notes/Notes.xcdatamodeld";
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 3EDA5BB52D88299C00083DB6 /* Project object */;
 }
