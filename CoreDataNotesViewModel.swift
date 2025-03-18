@@ -19,6 +19,12 @@ class CoreDataNotesViewModel: ObservableObject {
         }
     }
 
+        func deleteNote(id: NSManagedObjectID) {
+            // Logic to delete the note with the given objectID
+            // This might involve fetching the note by ID and then deleting it
+        }
+    
+
     func addNote(title: String, content: String) {
         let newNote = Note(context: context)
         newNote.title = title

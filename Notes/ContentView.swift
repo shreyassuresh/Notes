@@ -61,6 +61,7 @@ struct CreateNotePage: View {
     @ObservedObject var viewModel: CoreDataNotesViewModel
     @State private var title = ""
     @State private var content = ""
+    @Environment(\.presentationMode) var presentationMode
 
     var body: some View {
         Form {
@@ -72,6 +73,7 @@ struct CreateNotePage: View {
             }
             Button(action: {
                 viewModel.addNote(title: title, content: content)
+                presentationMode.wrappedValue.dismiss() // Dismiss the view
             }) {
                 Text("Save Note")
                     .font(.headline)
@@ -87,12 +89,12 @@ struct CreateNotePage: View {
     }
 }
 
-// Edit Note Page: Page to edit existing notes
 struct EditNotePage: View {
     var note: Note
     @ObservedObject var viewModel: CoreDataNotesViewModel
     @State private var title = ""
     @State private var content = ""
+    @Environment(\.presentationMode) var presentationMode
 
     var body: some View {
         Form {
@@ -110,6 +112,7 @@ struct EditNotePage: View {
             }
             Button(action: {
                 viewModel.updateNote(id: note.objectID, title: title, content: content)
+                presentationMode.wrappedValue.dismiss() // Dismiss the view
             }) {
                 Text("Update Note")
                     .font(.headline)
@@ -120,10 +123,24 @@ struct EditNotePage: View {
                     .cornerRadius(10)
                     .shadow(radius: 5)
             }
+            Button(action: {
+                viewModel.deleteNote(id: note.objectID) // Correct method call
+                presentationMode.wrappedValue.dismiss() // Dismiss the view
+            }) {
+                Text("Delete Note")
+                    .font(.headline)
+                    .foregroundColor(.white)
+                    .padding()
+                    .frame(maxWidth: .infinity)
+                    .background(Color.red)
+                    .cornerRadius(10)
+                    .shadow(radius: 5)
+            }
         }
         .navigationTitle("Edit Note")
     }
 }
+
 
 // The main ContentView, initializing the HomePage
 struct ContentView: View {
