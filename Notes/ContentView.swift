@@ -23,9 +23,22 @@ struct HomePage: View {
                 }
                 .onDelete(perform: deleteNote)
             }
-            .navigationTitle("Notes")
+            
+           
             .navigationBarItems(
-                leading: CustomEditButton(isEditing: $isEditing),
+                                leading: HStack {
+                                    // Logo on the left, bigger size
+                                    Image("logo proto")
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(width: 50, height: 50) // Increased size of the logo
+                                        .padding(.leading, 16)
+                                    
+                                    // Title on the left, bigger font size
+                                    Text("Notes")
+                                        .font(.system(size: 30, weight: .bold)) // Increased font size
+                                        .foregroundColor(.primary)
+                                },
                 trailing: NavigationLink(destination: CreateNotePage(viewModel: viewModel)) {
                     Image(systemName: "plus")
                 }
@@ -38,25 +51,6 @@ struct HomePage: View {
     }
 }
 
-// Custom Edit Button
-struct CustomEditButton: View {
-    @Binding var isEditing: Bool
-
-    var body: some View {
-        Button(action: {
-            isEditing.toggle()
-        }) {
-            Text(isEditing ? "Done" : "Edit")
-                .font(.headline)
-                .foregroundColor(.white)
-                .padding()
-                .frame(width: 80, height: 40)
-                .background(isEditing ? Color.green : Color.blue)
-                .cornerRadius(10)
-                .shadow(radius: 5)
-        }
-    }
-}
 
 // Create Note Page: Form for creating and saving notes
 struct CreateNotePage: View {
