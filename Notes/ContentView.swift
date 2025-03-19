@@ -1,4 +1,6 @@
 import SwiftUI
+import CoreData
+
 
 // Home Page: List of saved notes
 struct HomePage: View {
@@ -136,6 +138,7 @@ struct EditNotePage: View {
                     .cornerRadius(10)
                     .shadow(radius: 5)
             }
+
         }
         .navigationTitle("Edit Note")
     }

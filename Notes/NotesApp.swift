@@ -6,6 +6,8 @@
 //
 
 import SwiftUI
+import CoreData
+
 
 @main
 struct NotesApp: App {

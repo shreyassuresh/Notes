@@ -1,6 +1,5 @@
 import SwiftUI
 import CoreData
-
 class CoreDataNotesViewModel: ObservableObject {
     @Published var notes: [Note] = []
     
@@ -19,17 +18,12 @@ class CoreDataNotesViewModel: ObservableObject {
         }
     }
 
-        func deleteNote(id: NSManagedObjectID) {
-            // Logic to delete the note with the given objectID
-            // This might involve fetching the note by ID and then deleting it
-        }
-    
-
     func addNote(title: String, content: String) {
         let newNote = Note(context: context)
         newNote.title = title
         newNote.content = content
         saveContext()
+        fetchNotes() // Reload notes after adding the new note
     }
 
     func updateNote(id: NSManagedObjectID, title: String, content: String) {
@@ -37,6 +31,7 @@ class CoreDataNotesViewModel: ObservableObject {
             noteToUpdate.title = title
             noteToUpdate.content = content
             saveContext()
+            fetchNotes() // Reload notes after updating
         }
     }
 
@@ -46,13 +41,20 @@ class CoreDataNotesViewModel: ObservableObject {
             context.delete(noteToDelete)
         }
         saveContext()
+        fetchNotes()  // Reload notes after deletion
     }
-    
+
+    func deleteNote(id: NSManagedObjectID) {
+        if let noteToDelete = context.object(with: id) as? Note {
+            context.delete(noteToDelete)
+            saveContext()
+            fetchNotes()  // Reload notes after deletion
+        }
+    }
 
     private func saveContext() {
         do {
             try context.save()
-            fetchNotes()  // Reload the notes after saving
         } catch {
             print("Error saving context: \(error)")
         }
