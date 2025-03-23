@@ -18,6 +18,8 @@ A simple and elegant Notes app built using **SwiftUI** and **Core Data**. This a
    <img src="https://github.com/user-attachments/assets/444f6dbd-e4e1-4f16-b451-c5d7a4d32e32" width="300">
   <img src="https://github.com/user-attachments/assets/9ec6bafb-e819-4eb4-bbfa-3a68493cfdc3" width="300">
   <img src="https://github.com/user-attachments/assets/1fab174d-0544-4f7d-9a05-9458bcd5f308" width="300">
+   <img src="https://github.com/user-attachments/assets/e9a331e3-4073-4342-b68d-4492c5b6e34b" width="300">
+
 </p>
 
 ## 🔧 Installation  
